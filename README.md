@@ -9,7 +9,8 @@ persistencia de los agregados. El proyecto contiene 52 migraciones que
 materializan el modelo relacional completo. La primera vertical funcional,
 `country`, ya dispone de dominio, casos de uso, API REST y adaptador JPA. Las
 verticales `stateregion` y `citymunicipality` completan la jerarquía de
-localización mediante referencias entre agregados por identidad.
+localización mediante referencias entre agregados por identidad. El catálogo
+independiente `gender` implementa la persistencia definida en V4.
 
 ## Estado actual
 
@@ -18,9 +19,9 @@ localización mediante referencias entre agregados por identidad.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion` y `citymunicipality` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion` y `citymunicipality` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion` y `citymunicipality` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality` y `gender` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality` y `gender` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality` y `gender` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
