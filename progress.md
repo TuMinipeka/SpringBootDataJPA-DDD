@@ -1,9 +1,9 @@
 # Bounded Context Progress
 
 - Total bounded contexts: 52
-- Completed bounded contexts: 33
-- Current bounded context: V34 `conversation_statuses` (`conversationstatus`)
-- Next bounded context: V35 `priorities` (`priority`)
+- Completed bounded contexts: 34
+- Current bounded context: V35 `priorities` (`priority`)
+- Next bounded context: V36 `sender_types` (`sendertype`)
 
 ## Completed migrations
 
@@ -42,8 +42,9 @@
 | V31 | `assessment_types` | `assessmenttype` |
 | V32 | `consent_types` | `consenttype` |
 | V33 | `diagnostic_systems` | `diagnosticsystem` |
+| V34 | `conversation_statuses` | `conversationstatus` |
 
 ## Pending migrations
 
-V34 through V52 remain pending. The `Current bounded context` field is the
+V35 through V52 remain pending. The `Current bounded context` field is the
 authoritative next implementation target.
