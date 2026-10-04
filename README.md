@@ -16,7 +16,8 @@ independiente `gender` implementa la persistencia definida en V4 y
 `relationshiptype` representa los tipos de relación definidos en V7. El
 bounded context `contact` implementa V8 y referencia `citymunicipality` por
 identidad, sin acoplar ambos agregados. `phonecontact` implementa V9 como un
-agregado asociado a `contact` mediante su identidad.
+agregado asociado a `contact` mediante su identidad y `emailcontact` aplica el
+mismo criterio para la migración V10.
 
 ## Estado actual
 
@@ -25,9 +26,9 @@ agregado asociado a `contact` mediante su identidad.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact` y `phonecontact` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact` y `phonecontact` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact` y `phonecontact` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact` y `emailcontact` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact` y `emailcontact` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact` y `emailcontact` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
