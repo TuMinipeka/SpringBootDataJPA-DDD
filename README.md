@@ -26,7 +26,8 @@ estudios definido en V14. `professionalstudy` implementa V15 y enlaza estudios,
 profesionales y el país opcional mediante identidades tipadas.
 `clinicalrecordstatus` implementa el catálogo de estados de historia clínica
 definido en V16. `clinicalrecord` implementa V17 y referencia pacientes y
-estados mediante sus identidades.
+estados mediante sus identidades. `encountertype` implementa el catálogo de
+tipos de encuentro definido en V18.
 
 ## Estado actual
 
@@ -35,9 +36,9 @@ estados mediante sus identidades.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus` y `clinicalrecord` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus` y `clinicalrecord` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus` y `clinicalrecord` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord` y `encountertype` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord` y `encountertype` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord` y `encountertype` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
