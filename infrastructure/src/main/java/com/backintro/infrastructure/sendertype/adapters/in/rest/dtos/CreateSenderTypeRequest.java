@@ -1,0 +1,13 @@
+package com.backintro.infrastructure.sendertype.adapters.in.rest.dtos;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record CreateSenderTypeRequest(
+
+        @NotBlank(message = "nameType is required")
+        @Size(max = 50, message = "nameType must have at most 50 characters")
+        String nameType
+
+) {
+}
