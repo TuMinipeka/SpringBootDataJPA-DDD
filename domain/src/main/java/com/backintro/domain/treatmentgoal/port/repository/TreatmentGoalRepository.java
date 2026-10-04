@@ -1,0 +1,18 @@
+package com.backintro.domain.treatmentgoal.port.repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.backintro.domain.treatmentgoal.model.aggregate.TreatmentGoal;
+import com.backintro.domain.treatmentgoal.model.valueobject.TreatmentGoalId;
+
+public interface TreatmentGoalRepository {
+
+    TreatmentGoal save(TreatmentGoal treatmentGoal);
+
+    Optional<TreatmentGoal> findById(TreatmentGoalId id);
+
+    List<TreatmentGoal> findAll();
+
+    void delete(TreatmentGoal treatmentGoal);
+}
