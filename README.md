@@ -47,7 +47,8 @@ objetivo con su plan y estado mediante identidades tipadas. `medicationroute`
 implementa el catálogo de vías de administración definido en V30.
 `assessmenttype` implementa el catálogo de tipos de evaluación definido en
 V31 y `consenttype` implementa el catálogo de tipos de consentimiento definido
-en V32.
+en V32. `diagnosticsystem` implementa el catálogo de sistemas diagnósticos y
+sus versiones definido en V33.
 
 ## Estado actual
 
@@ -56,9 +57,9 @@ en V32.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype` y `consenttype` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype` y `consenttype` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype` y `consenttype` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype`, `consenttype` y `diagnosticsystem` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype`, `consenttype` y `diagnosticsystem` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype`, `consenttype` y `diagnosticsystem` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
