@@ -43,7 +43,8 @@ en V26.
 estado del tratamiento mediante identidades tipadas.
 `treatmentgoalstatus` implementa el catálogo de estados de objetivos de
 tratamiento definido en V28. `treatmentgoal` implementa V29 y relaciona cada
-objetivo con su plan y estado mediante identidades tipadas.
+objetivo con su plan y estado mediante identidades tipadas. `medicationroute`
+implementa el catálogo de vías de administración definido en V30.
 
 ## Estado actual
 
@@ -52,9 +53,9 @@ objetivo con su plan y estado mediante identidades tipadas.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus` y `treatmentgoal` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus` y `treatmentgoal` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus` y `treatmentgoal` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal` y `medicationroute` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal` y `medicationroute` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal` y `medicationroute` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
