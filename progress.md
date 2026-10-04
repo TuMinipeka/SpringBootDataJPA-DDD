@@ -1,9 +1,9 @@
 # Bounded Context Progress
 
 - Total bounded contexts: 52
-- Completed bounded contexts: 51
-- Current bounded context: V52 `patient_allergies` (`patientallergy`)
-- Next step: Final integrity audit and professional technical documentation
+- Completed bounded contexts: 52
+- Current bounded context: None; all 52 are implemented
+- Current step: Final integrity audit and professional technical documentation
 
 ## Completed migrations
 
@@ -60,8 +60,9 @@
 | V49 | `chat_escalations` | `chatescalation` |
 | V50 | `chat_escalation_assignments` | `chatescalationassignment` |
 | V51 | `chat_escalation_status_history` | `chatescalationstatushistory` |
+| V52 | `patient_allergies` | `patientallergy` |
 
-## Pending migrations
+## Completion status
 
-V52 remains pending. The `Current bounded context` field is the authoritative
-next implementation target.
+All migrations from V1 through V52 have an implemented bounded context. The
+final integrity audit and professional technical documentation remain pending.

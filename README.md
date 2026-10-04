@@ -73,7 +73,8 @@ ejecuciones de inteligencia artificial según la migración V48.
 V49 y referencia su conversación y estado mediante identidades tipadas.
 `chatescalationassignment` implementa en V50 la asignación única de
 profesionales a cada escalamiento. `chatescalationstatushistory` implementa
-el historial de cambios de estado definido en V51.
+el historial de cambios de estado definido en V51. `patientallergy` completa
+V52 con las alergias del paciente y su profesional registrador opcional.
 
 ## Estado actual
 
@@ -82,9 +83,9 @@ el historial de cambios de estado definido en V51.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype`, `consenttype`, `diagnosticsystem`, `conversationstatus`, `priority`, `sendertype`, `messagetype`, `airunstatus`, `escalationstatus`, `aiprovidermodel`, `aimodel`, `chatconversation`, `chatparticipant`, `chatmessage`, `chatconversationaisetting`, `chatairun`, `chatairunmetric`, `chatairunerror`, `chatescalation`, `chatescalationassignment` y `chatescalationstatushistory` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype`, `consenttype`, `diagnosticsystem`, `conversationstatus`, `priority`, `sendertype`, `messagetype`, `airunstatus`, `escalationstatus`, `aiprovidermodel`, `aimodel`, `chatconversation`, `chatparticipant`, `chatmessage`, `chatconversationaisetting`, `chatairun`, `chatairunmetric`, `chatairunerror`, `chatescalation`, `chatescalationassignment` y `chatescalationstatushistory` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype`, `consenttype`, `diagnosticsystem`, `conversationstatus`, `priority`, `sendertype`, `messagetype`, `airunstatus`, `escalationstatus`, `aiprovidermodel`, `aimodel`, `chatconversation`, `chatparticipant`, `chatmessage`, `chatconversationaisetting`, `chatairun`, `chatairunmetric`, `chatairunerror`, `chatescalation`, `chatescalationassignment` y `chatescalationstatushistory` |
+| Entidades JPA | Implementadas para los 52 bounded contexts, desde `country` hasta `patientallergy` |
+| Repositorios Spring Data JPA | Implementados para los 52 bounded contexts |
+| Persistencia CRUD con Hibernate | Implementada para los 52 bounded contexts |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
