@@ -6,75 +6,13 @@ tratamientos y conversaciones asistidas por inteligencia artificial.
 
 Flyway versiona la estructura de PostgreSQL y JPA/Hibernate implementa la
 persistencia de los agregados. El proyecto contiene 52 migraciones que
-materializan el modelo relacional completo. La primera vertical funcional,
-`country`, ya dispone de dominio, casos de uso, API REST y adaptador JPA. Las
-verticales `stateregion` y `citymunicipality` completan la jerarquía de
-localización mediante referencias entre agregados por identidad. El catálogo
-independiente `gender` implementa la persistencia definida en V4 y
-`documenttype` implementa el catálogo documental de V5. El bounded context
-`professionaltype` incorpora el catálogo profesional definido en V6 y
-`relationshiptype` representa los tipos de relación definidos en V7. El
-bounded context `contact` implementa V8 y referencia `citymunicipality` por
-identidad, sin acoplar ambos agregados. `phonecontact` implementa V9 como un
-agregado asociado a `contact` mediante su identidad y `emailcontact` aplica el
-mismo criterio para la migración V10. `professional` implementa V11 y enlaza
-los catálogos documental y profesional con ubicación y contacto por identidad.
-`patient` implementa V12 con referencias tipadas a documento, género y ciudad.
-`patientcontact` implementa V13 como la relación entre pacientes, contactos y
-tipos de relación mediante sus identidades. `study` implementa el catálogo de
-estudios definido en V14. `professionalstudy` implementa V15 y enlaza estudios,
-profesionales y el país opcional mediante identidades tipadas.
-`clinicalrecordstatus` implementa el catálogo de estados de historia clínica
-definido en V16. `clinicalrecord` implementa V17 y referencia pacientes y
-estados mediante sus identidades. `encountertype` implementa el catálogo de
-tipos de encuentro definido en V18, `encountermodality` implementa el
-catálogo de modalidades de encuentro definido en V19 y `encounterstatus`
-implementa el catálogo de estados de encuentro definido en V20. `encounter`
-implementa V21 y relaciona la historia clínica, el profesional, el tipo, la
-modalidad y el estado mediante identidades tipadas. `clinicalnote` implementa
-V22 y asocia las notas clínicas con encuentros y profesionales por identidad.
-`mentalstatusexam` implementa V23 como el examen mental único de un encuentro.
-`risklevel` implementa el catálogo de niveles de riesgo definido en V24.
-`riskassessment` implementa V25 y relaciona el encuentro, el nivel de riesgo
-y el profesional evaluador mediante identidades tipadas.
-`treatmentstatus` implementa el catálogo de estados de tratamiento definido
-en V26.
-`treatmentplan` implementa V27 y relaciona el encuentro, el profesional y el
-estado del tratamiento mediante identidades tipadas.
-`treatmentgoalstatus` implementa el catálogo de estados de objetivos de
-tratamiento definido en V28. `treatmentgoal` implementa V29 y relaciona cada
-objetivo con su plan y estado mediante identidades tipadas. `medicationroute`
-implementa el catálogo de vías de administración definido en V30.
-`assessmenttype` implementa el catálogo de tipos de evaluación definido en
-V31 y `consenttype` implementa el catálogo de tipos de consentimiento definido
-en V32. `diagnosticsystem` implementa el catálogo de sistemas diagnósticos y
-sus versiones definido en V33. `conversationstatus` implementa el catálogo de
-estados de conversación definido en V34 y `priority` implementa el catálogo de
-prioridades definido en V35. `sendertype` implementa el catálogo de tipos de
-remitente definido en V36 y `messagetype` implementa el catálogo de tipos de
-mensaje definido en V37. `airunstatus` implementa el catálogo de estados de
-ejecución de inteligencia artificial definido en V38 y `escalationstatus`
-implementa el catálogo de estados de escalamiento definido en V39.
-`aiprovidermodel` implementa los proveedores de modelos de inteligencia
-artificial definidos en V40 y `aimodel` implementa sus modelos, precios y
-límites operativos definidos en V41. `chatconversation` implementa las
-conversaciones, su estado, prioridad y cierre definidos en V42.
-`chatparticipant` implementa sus participantes y actores definidos en V43 y
-`chatmessage` implementa los mensajes con contenido JSONB definidos en V44.
-`chatconversationaisetting` implementa la configuración de inteligencia
-artificial por conversación definida en V45. `chatairun` implementa las
-ejecuciones de inteligencia artificial de V46 y referencia la conversación,
-el mensaje opcional, el modelo y el estado mediante identidades tipadas.
-`chatairunmetric` implementa las métricas de tokens y costo definidas en V47,
-con una métrica única por ejecución de inteligencia artificial.
-`chatairunerror` implementa los errores de proveedor asociados a las
-ejecuciones de inteligencia artificial según la migración V48.
-`chatescalation` implementa los escalamientos de conversaciones definidos en
-V49 y referencia su conversación y estado mediante identidades tipadas.
-`chatescalationassignment` implementa en V50 la asignación única de
-profesionales a cada escalamiento. `chatescalationstatushistory` implementa
-el historial de cambios de estado definido en V51. `patientallergy` completa
-V52 con las alergias del paciente y su profesional registrador opcional.
+materializan el modelo relacional completo. Cada tabla dispone de un bounded
+context vertical con dominio, casos de uso, API REST y adaptador JPA. Las
+relaciones entre agregados se expresan mediante identidades tipadas en dominio
+y UUID escalares en persistencia, sin asociaciones JPA entre entidades.
+
+La arquitectura, las convenciones y el catálogo de los 52 contextos se
+documentan en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ## Estado actual
 
@@ -88,9 +26,9 @@ V52 con las alergias del paciente y su profesional registrador opcional.
 | Persistencia CRUD con Hibernate | Implementada para los 52 bounded contexts |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
-Por tanto, el resultado actual es una base de datos estructuralmente completa,
-pero sus tablas permanecen vacías hasta que se implemente la persistencia o se
-agreguen migraciones de datos.
+No se incluyen datos semilla: una instalación nueva inicia con las tablas
+vacías, pero las 52 APIs CRUD y sus adaptadores JPA están disponibles para
+persistir información.
 
 ## Tecnologías
 
@@ -103,9 +41,10 @@ agreguen migraciones de datos.
 | Flyway | 10.10.0 |
 | PostgreSQL | Probado con PostgreSQL 18 |
 
-Spring Data JPA está declarado como dependencia para una etapa posterior. En el
-estado actual, Flyway accede a PostgreSQL mediante JDBC y obtiene conexiones del
-pool HikariCP para ejecutar las migraciones.
+Spring Data JPA implementa los repositorios de los 52 contextos. Flyway accede
+a PostgreSQL mediante JDBC/HikariCP para evolucionar el esquema, mientras
+Hibernate utiliza el mismo `DataSource` para validar los mapeos y ejecutar el
+CRUD durante el funcionamiento de la aplicación.
 
 ## Arquitectura del proyecto
 
@@ -126,7 +65,7 @@ La clase de arranque se encuentra en:
 infrastructure/src/main/java/com/backintro/infrastructure/MiappApplication.java
 ```
 
-## Flyway como objetivo principal
+## Persistencia y evolución del esquema
 
 Flyway es el componente responsable de crear, versionar y validar la estructura
 de la base de datos. Al iniciar Spring Boot realiza el siguiente proceso:
@@ -203,15 +142,16 @@ En el siguiente arranque, Flyway conservará `V1`–`V52` y ejecutará únicamen
 
 ## Estado de JPA e Hibernate
 
-`spring-boot-starter-data-jpa` está incluido en `infrastructure`. El bounded
-context `country` sirve como patrón para implementar las siguientes verticales:
+`spring-boot-starter-data-jpa` está incluido en `infrastructure`. Los 52 bounded
+contexts reproducen el patrón arquitectónico establecido por `country`:
 
-- el dominio declara `CountryRepository` como puerto de salida;
-- la aplicación contiene los casos de uso sin depender de Spring ni JPA;
-- `CountryJpaEntity` mapea la tabla `countries`;
-- `SpringDataCountryJpaRepository` proporciona el acceso JPA;
-- `CountryRepositoryAdapter` implementa el puerto y traduce mediante un mapper;
-- `CountryBeanConfiguration` ensambla los casos de uso;
+- cada dominio declara su repositorio como puerto de salida;
+- cada paquete de aplicación contiene sus casos de uso sin depender de Spring
+  ni JPA;
+- una entidad JPA mapea íntegramente la tabla correspondiente;
+- un repositorio Spring Data proporciona el acceso JPA;
+- un adaptador implementa el puerto de dominio y traduce mediante un mapper;
+- una configuración Spring ensambla los cinco casos de uso CRUD;
 - Hibernate persiste datos, pero no crea ni altera el esquema.
 
 La propiedad configurada es:
@@ -311,8 +251,8 @@ mvn -pl infrastructure spring-boot:run
 
 Durante el arranque, Flyway valida el historial y aplica las migraciones
 pendientes. Una instalación completa debe terminar en la versión `52`. Este
-arranque comprueba la infraestructura de migraciones; todavía no ejecuta casos
-de uso de persistencia mediante JPA.
+arranque también valida con Hibernate los 52 mapeos JPA. Después, los casos de
+uso quedan disponibles mediante sus endpoints REST.
 
 La aplicación inicia de forma predeterminada en:
 
