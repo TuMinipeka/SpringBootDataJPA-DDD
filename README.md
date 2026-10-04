@@ -19,6 +19,7 @@ identidad, sin acoplar ambos agregados. `phonecontact` implementa V9 como un
 agregado asociado a `contact` mediante su identidad y `emailcontact` aplica el
 mismo criterio para la migración V10. `professional` implementa V11 y enlaza
 los catálogos documental y profesional con ubicación y contacto por identidad.
+`patient` implementa V12 con referencias tipadas a documento, género y ciudad.
 
 ## Estado actual
 
@@ -27,9 +28,9 @@ los catálogos documental y profesional con ubicación y contacto por identidad.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact` y `professional` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact` y `professional` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact` y `professional` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional` y `patient` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional` y `patient` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional` y `patient` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
