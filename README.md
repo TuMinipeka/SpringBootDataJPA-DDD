@@ -12,7 +12,8 @@ verticales `stateregion` y `citymunicipality` completan la jerarquía de
 localización mediante referencias entre agregados por identidad. El catálogo
 independiente `gender` implementa la persistencia definida en V4 y
 `documenttype` implementa el catálogo documental de V5. El bounded context
-`professionaltype` incorpora el catálogo profesional definido en V6.
+`professionaltype` incorpora el catálogo profesional definido en V6 y
+`relationshiptype` representa los tipos de relación definidos en V7.
 
 ## Estado actual
 
@@ -21,9 +22,9 @@ independiente `gender` implementa la persistencia definida en V4 y
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype` y `professionaltype` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype` y `professionaltype` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype` y `professionaltype` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype` y `relationshiptype` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype` y `relationshiptype` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype` y `relationshiptype` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
