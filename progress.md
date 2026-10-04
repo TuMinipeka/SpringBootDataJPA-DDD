@@ -1,9 +1,9 @@
 # Bounded Context Progress
 
 - Total bounded contexts: 52
-- Completed bounded contexts: 36
-- Current bounded context: V37 `message_types` (`messagetype`)
-- Next bounded context: V38 `ai_runs_statuses` (`airunstatus`)
+- Completed bounded contexts: 37
+- Current bounded context: V38 `ai_runs_statuses` (`airunstatus`)
+- Next bounded context: V39 `escalations_statuses` (`escalationstatus`)
 
 ## Completed migrations
 
@@ -45,8 +45,9 @@
 | V34 | `conversation_statuses` | `conversationstatus` |
 | V35 | `priorities` | `priority` |
 | V36 | `sender_types` | `sendertype` |
+| V37 | `message_types` | `messagetype` |
 
 ## Pending migrations
 
-V37 through V52 remain pending. The `Current bounded context` field is the
+V38 through V52 remain pending. The `Current bounded context` field is the
 authoritative next implementation target.
