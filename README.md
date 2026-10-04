@@ -10,7 +10,8 @@ materializan el modelo relacional completo. La primera vertical funcional,
 `country`, ya dispone de dominio, casos de uso, API REST y adaptador JPA. Las
 verticales `stateregion` y `citymunicipality` completan la jerarquía de
 localización mediante referencias entre agregados por identidad. El catálogo
-independiente `gender` implementa la persistencia definida en V4.
+independiente `gender` implementa la persistencia definida en V4 y
+`documenttype` implementa el catálogo documental de V5.
 
 ## Estado actual
 
@@ -19,9 +20,9 @@ independiente `gender` implementa la persistencia definida en V4.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality` y `gender` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality` y `gender` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality` y `gender` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender` y `documenttype` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender` y `documenttype` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender` y `documenttype` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
