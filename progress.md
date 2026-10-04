@@ -1,9 +1,9 @@
 # Bounded Context Progress
 
 - Total bounded contexts: 52
-- Completed bounded contexts: 39
-- Current bounded context: V40 `provider_models_ai` (`aiprovidermodel`)
-- Next bounded context: V41 `ai_models` (`aimodel`)
+- Completed bounded contexts: 40
+- Current bounded context: V41 `ai_models` (`aimodel`)
+- Next bounded context: V42 `chat_conversations` (`chatconversation`)
 
 ## Completed migrations
 
@@ -48,8 +48,9 @@
 | V37 | `message_types` | `messagetype` |
 | V38 | `ai_runs_statuses` | `airunstatus` |
 | V39 | `escalations_statuses` | `escalationstatus` |
+| V40 | `provider_models_ai` | `aiprovidermodel` |
 
 ## Pending migrations
 
-V40 through V52 remain pending. The `Current bounded context` field is the
+V41 through V52 remain pending. The `Current bounded context` field is the
 authoritative next implementation target.
