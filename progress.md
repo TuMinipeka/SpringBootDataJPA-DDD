@@ -1,9 +1,9 @@
 # Bounded Context Progress
 
 - Total bounded contexts: 52
-- Completed bounded contexts: 43
-- Current bounded context: V44 `chat_messages` (`chatmessage`)
-- Next bounded context: V45 `chat_conversation_ai_settings` (`chatconversationaisetting`)
+- Completed bounded contexts: 44
+- Current bounded context: V45 `chat_conversation_ai_settings` (`chatconversationaisetting`)
+- Next bounded context: V46 `chat_ai_runs` (`chatairun`)
 
 ## Completed migrations
 
@@ -52,8 +52,9 @@
 | V41 | `ai_models` | `aimodel` |
 | V42 | `chat_conversations` | `chatconversation` |
 | V43 | `chat_participants` | `chatparticipant` |
+| V44 | `chat_messages` | `chatmessage` |
 
 ## Pending migrations
 
-V44 through V52 remain pending. The `Current bounded context` field is the
+V45 through V52 remain pending. The `Current bounded context` field is the
 authoritative next implementation target.
