@@ -1,0 +1,18 @@
+package com.backintro.infrastructure.chatairun.adapters.in.rest.dtos;
+
+import java.util.UUID;
+
+import jakarta.validation.constraints.NotNull;
+
+public record UpdateChatAiRunRequest(
+
+        UUID messageId,
+
+        @NotNull(message = "modelId is required")
+        UUID modelId,
+
+        @NotNull(message = "aiRunStatusId is required")
+        UUID aiRunStatusId
+
+) {
+}
