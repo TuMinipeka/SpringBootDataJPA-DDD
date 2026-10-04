@@ -1,9 +1,9 @@
 # Bounded Context Progress
 
 - Total bounded contexts: 52
-- Completed bounded contexts: 48
-- Current bounded context: V49 `chat_escalations` (`chatescalation`)
-- Next bounded context: V50 `chat_escalation_assignments` (`chatescalationassignment`)
+- Completed bounded contexts: 49
+- Current bounded context: V50 `chat_escalation_assignments` (`chatescalationassignment`)
+- Next bounded context: V51 `chat_escalation_status_history` (`chatescalationstatushistory`)
 
 ## Completed migrations
 
@@ -57,8 +57,9 @@
 | V46 | `chat_ai_runs` | `chatairun` |
 | V47 | `chat_ai_run_metrics` | `chatairunmetric` |
 | V48 | `chat_ai_run_errors` | `chatairunerror` |
+| V49 | `chat_escalations` | `chatescalation` |
 
 ## Pending migrations
 
-V49 through V52 remain pending. The `Current bounded context` field is the
+V50 through V52 remain pending. The `Current bounded context` field is the
 authoritative next implementation target.
