@@ -1,0 +1,13 @@
+package com.backintro.infrastructure.study.adapters.in.rest.dtos;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record UpdateStudyRequest(
+
+        @NotBlank(message = "name is required")
+        @Size(max = 40, message = "name must have at most 40 characters")
+        String name
+
+) {
+}
