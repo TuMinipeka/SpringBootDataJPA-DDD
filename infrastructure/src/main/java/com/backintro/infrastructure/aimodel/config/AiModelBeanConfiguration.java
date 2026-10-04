@@ -9,15 +9,20 @@ import com.backintro.application.aimodel.usecase.ListAiModelUseCase;
 import com.backintro.application.aimodel.usecase.RegisterAiModelUseCase;
 import com.backintro.application.aimodel.usecase.UpdateAiModelUseCase;
 import com.backintro.domain.aimodel.port.repository.AiModelRepository;
+import com.backintro.domain.aiprovidermodel.port.repository.AiProviderModelRepository;
 
 @Configuration
 public class AiModelBeanConfiguration {
 
     @Bean
     RegisterAiModelUseCase registerAiModelUseCase(
-            AiModelRepository repository
+            AiModelRepository repository,
+            AiProviderModelRepository aiProviderModelRepository
     ) {
-        return new RegisterAiModelUseCase(repository);
+        return new RegisterAiModelUseCase(
+                repository,
+                aiProviderModelRepository
+        );
     }
 
     @Bean
