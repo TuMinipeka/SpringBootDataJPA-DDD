@@ -46,7 +46,8 @@ tratamiento definido en V28. `treatmentgoal` implementa V29 y relaciona cada
 objetivo con su plan y estado mediante identidades tipadas. `medicationroute`
 implementa el catálogo de vías de administración definido en V30.
 `assessmenttype` implementa el catálogo de tipos de evaluación definido en
-V31.
+V31 y `consenttype` implementa el catálogo de tipos de consentimiento definido
+en V32.
 
 ## Estado actual
 
@@ -55,9 +56,9 @@ V31.
 | Esquema PostgreSQL | Implementado con 52 tablas |
 | Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
-| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute` y `assessmenttype` |
-| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute` y `assessmenttype` |
-| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute` y `assessmenttype` |
+| Entidades JPA | Implementadas para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype` y `consenttype` |
+| Repositorios Spring Data JPA | Implementados para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype` y `consenttype` |
+| Persistencia CRUD con Hibernate | Implementada para `country`, `stateregion`, `citymunicipality`, `gender`, `documenttype`, `professionaltype`, `relationshiptype`, `contact`, `phonecontact`, `emailcontact`, `professional`, `patient`, `patientcontact`, `study`, `professionalstudy`, `clinicalrecordstatus`, `clinicalrecord`, `encountertype`, `encountermodality`, `encounterstatus`, `encounter`, `clinicalnote`, `mentalstatusexam`, `risklevel`, `riskassessment`, `treatmentstatus`, `treatmentplan`, `treatmentgoalstatus`, `treatmentgoal`, `medicationroute`, `assessmenttype` y `consenttype` |
 | Datos iniciales o de prueba | No incluidos actualmente |
 
 Por tanto, el resultado actual es una base de datos estructuralmente completa,
