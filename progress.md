@@ -5,6 +5,13 @@
 - Current bounded context: None; all 52 are implemented
 - Current step: Complete; final audit and technical documentation finished
 
+## Cross-cutting security
+
+Spring Security protects all 52 bounded-context APIs on `feature/security`.
+Flyway migrations V53 through V56 add four technical security tables without
+changing the business bounded-context count. JWT, refresh tokens, BCrypt and
+role-based authorization are documented in `docs/SECURITY.md`.
+
 ## Completed migrations
 
 | Migration | Table | Package |
@@ -65,7 +72,8 @@
 ## Completion status
 
 All migrations from V1 through V52 have an implemented bounded context. The
-final audit completed on October 4, 2026 and verified 52 matching JPA entities,
-385 mapped columns, 52 complete CRUD controllers, no JPA object associations,
-and 156 passing tests (3 per bounded context). The architecture and complete
-catalog are documented in `docs/ARCHITECTURE.md`.
+business-context audit completed on October 4, 2026. The security audit on
+October 8, 2026 verified 56 matching JPA entities, 404 mapped columns, 52
+protected CRUD controllers, no JPA object associations, and 14 focused security
+tests. The architecture and complete catalog are documented in
+`docs/ARCHITECTURE.md`.

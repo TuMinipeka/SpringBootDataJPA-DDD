@@ -15,6 +15,7 @@ $env:DB_URL = 'jdbc:postgresql://localhost:5432/librarydb'
 $env:DB_USERNAME = 'daniel'
 $env:DB_PASSWORD = 'su-clave'
 $env:DB_SCHEMA = 'librarydb_schema'
+$env:JWT_SECRET = 'secreto-aleatorio-de-al-menos-32-bytes'
 mvn -pl infrastructure spring-boot:run
 ```
 
@@ -25,7 +26,8 @@ usuario y contraseña. Después de iniciar la aplicación:
 
 1. Refresque la conexión con `F5`.
 2. Abra `Databases > librarydb > Schemas > librarydb_schema > Tables`.
-3. Deben aparecer 52 tablas del modelo y la tabla de historial de Flyway.
+3. Deben aparecer 52 tablas de negocio, 4 tablas técnicas de seguridad y la
+   tabla de historial de Flyway.
 
 Estas consultas permiten comprobarlo desde el editor SQL de DBeaver:
 

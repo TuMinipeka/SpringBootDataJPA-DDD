@@ -7,6 +7,11 @@ El backend implementa los 52 bounded contexts derivados de las migraciones
 la estructura definida originalmente por `country`, sin introducir un modelo
 arquitectónico alternativo.
 
+Las migraciones `V53`–`V56` incorporan cuatro tablas técnicas para Spring
+Security. Son infraestructura transversal y no aumentan el número de bounded
+contexts clínicos. La política completa se describe en
+[`SECURITY.md`](SECURITY.md).
+
 El sistema combina dos responsabilidades complementarias:
 
 - Flyway crea, versiona y evoluciona el esquema PostgreSQL.
@@ -18,6 +23,9 @@ Hibernate usa `ddl-auto: validate`; por tanto, no crea ni modifica tablas.
 
 ```text
 HTTP / Spring MVC
+        |
+        v
+Spring Security / JWT
         |
         v
 infrastructure  -->  application  -->  domain
@@ -164,6 +172,17 @@ de registro y el caso de uso construye el DTO de respuesta.
 | V51 | `chat_escalation_status_history` | `chatescalationstatushistory` | `/api/chat-escalation-status-history` |
 | V52 | `patient_allergies` | `patientallergy` | `/api/patient-allergies` |
 
+## Seguridad transversal
+
+Todos los controladores de los 52 contextos usan rutas `/api/**`. La cadena de
+Spring Security exige `ROLE_MODERATOR` o `ROLE_ADMIN` para esas rutas, deja
+públicos únicamente registro, login y renovación, y reserva la administración
+de roles para `ROLE_ADMIN`.
+
+Los usuarios, roles y refresh tokens siguen el mismo flujo hexagonal y emplean
+UUID escalares en persistencia. El secreto JWT se recibe exclusivamente mediante
+`JWT_SECRET` y Hibernate valida las cuatro tablas creadas por Flyway.
+
 ## Estrategia de pruebas
 
 Cada contexto tiene dos clases de prueba y tres métodos focalizados:
@@ -171,25 +190,28 @@ Cada contexto tiene dos clases de prueba y tres métodos focalizados:
 - una prueba del mapper para comprobar el recorrido dominio–JPA–dominio;
 - dos pruebas del adaptador para comprobar creación y sincronización.
 
-La suite completa contiene 156 pruebas, equivalentes a 3 por contexto. El
-comando de verificación es:
+Cada contexto conserva sus 3 pruebas focalizadas. Seguridad añade 14 pruebas
+para tokens, casos de uso y políticas HTTP. El comando de verificación general
+es:
 
 ```powershell
 mvn test
 ```
 
-La auditoría final del 4 de octubre de 2026 verificó:
+La auditoría de seguridad del 8 de octubre de 2026 verificó:
 
-- 52 migraciones consecutivas y 52 tablas;
+- 56 migraciones consecutivas: 52 de negocio y 4 técnicas;
 - 52 agregados, IDs tipados y puertos de repositorio;
 - 260 casos de uso, cinco por contexto;
-- 52 entidades JPA y correspondencia exacta de sus 385 columnas;
+- 56 entidades JPA y correspondencia exacta de sus 404 columnas;
 - 52 controladores con el contrato CRUD completo;
-- 156 pruebas superadas, sin fallos, errores ni omisiones.
+- ausencia de asociaciones JPA entre entidades;
+- protección común de las 52 rutas de negocio;
+- 170 pruebas superadas: 156 de negocio y 14 de seguridad.
 
 ## Incorporación de un cambio futuro
 
-Un nuevo contexto debe partir de una migración posterior a `V52` y conservar el
+Un nuevo contexto debe partir de una migración posterior a `V56` y conservar el
 mismo recorrido vertical. El orden recomendado es:
 
 1. Crear la migración sin modificar versiones ya aplicadas.

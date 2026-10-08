@@ -5,11 +5,15 @@ para gestionar información clínica, pacientes, profesionales, encuentros,
 tratamientos y conversaciones asistidas por inteligencia artificial.
 
 Flyway versiona la estructura de PostgreSQL y JPA/Hibernate implementa la
-persistencia de los agregados. El proyecto contiene 52 migraciones que
-materializan el modelo relacional completo. Cada tabla dispone de un bounded
-context vertical con dominio, casos de uso, API REST y adaptador JPA. Las
+persistencia de los agregados. Las migraciones `V1`–`V52` materializan los 52
+bounded contexts y `V53`–`V56` añaden las tablas técnicas de seguridad. Cada
+tabla de negocio dispone de dominio, casos de uso, API REST y adaptador JPA. Las
 relaciones entre agregados se expresan mediante identidades tipadas en dominio
 y UUID escalares en persistencia, sin asociaciones JPA entre entidades.
+
+Spring Security protege las 52 APIs con JWT, refresh tokens revocables, BCrypt
+y autorización por roles. Consulta [`docs/SECURITY.md`](docs/SECURITY.md) para
+configurar credenciales, autenticación y permisos.
 
 La arquitectura, las convenciones y el catálogo de los 52 contextos se
 documentan en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
@@ -18,17 +22,17 @@ documentan en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 | Componente | Estado |
 | --- | --- |
-| Esquema PostgreSQL | Implementado con 52 tablas |
-| Migraciones Flyway | Implementadas desde `V1` hasta `V52` |
+| Esquema PostgreSQL | 52 tablas de negocio y 4 tablas técnicas de seguridad |
+| Migraciones Flyway | Implementadas desde `V1` hasta `V56` |
 | Restricciones, relaciones e índices | Implementados mediante SQL |
 | Entidades JPA | Implementadas para los 52 bounded contexts, desde `country` hasta `patientallergy` |
 | Repositorios Spring Data JPA | Implementados para los 52 bounded contexts |
 | Persistencia CRUD con Hibernate | Implementada para los 52 bounded contexts |
-| Datos iniciales o de prueba | No incluidos actualmente |
+| Seguridad | JWT stateless y RBAC sobre las 52 APIs |
+| Datos iniciales | Roles `USER`, `MODERATOR` y `ADMIN` |
 
-No se incluyen datos semilla: una instalación nueva inicia con las tablas
-vacías, pero las 52 APIs CRUD y sus adaptadores JPA están disponibles para
-persistir información.
+No se incluyen datos clínicos de ejemplo. Una instalación nueva únicamente
+inserta los tres roles técnicos; las 52 tablas de negocio permanecen vacías.
 
 ## Tecnologías
 
@@ -36,6 +40,8 @@ persistir información.
 | --- | --- |
 | Java | 21 |
 | Spring Boot | 3.2.2 |
+| Spring Security | Administrado por Spring Boot 3.2.2 |
+| JJWT | 0.13.0 |
 | Maven | 3.9+ |
 | PostgreSQL JDBC | 42.7.13 |
 | Flyway | 10.10.0 |
@@ -84,10 +90,11 @@ Ejecuta los archivos SQL en orden
 Registra cada resultado en el historial
 ```
 
-Flyway creó directamente mediante SQL:
+Flyway crea directamente mediante SQL:
 
 - el esquema `librarydb_schema`;
-- las 52 tablas del modelo;
+- las 52 tablas del modelo de negocio;
+- las 4 tablas técnicas de identidad, roles y refresh tokens;
 - claves primarias y foráneas;
 - restricciones de unicidad y validación;
 - índices para las relaciones y consultas principales;
@@ -106,7 +113,7 @@ infrastructure/src/main/resources/db/migration
 ```
 
 Se ejecutan en orden desde `V1__create_Country_table.sql` hasta
-`V52__create_Patient_Allergy_table.sql`.
+`V56__create_Security_Refresh_Token_table.sql`.
 
 Las 52 tablas se agrupan en las siguientes áreas:
 
@@ -117,6 +124,10 @@ Las 52 tablas se agrupan en las siguientes áreas:
 - conversaciones: participantes, mensajes, prioridades y estados;
 - inteligencia artificial: proveedores, modelos, ejecuciones, métricas y errores;
 - escalaciones: asignaciones e historial de estados.
+
+Las tablas `security_roles`, `security_users`, `security_user_roles` y
+`security_refresh_tokens` son infraestructura transversal y no representan
+nuevos bounded contexts clínicos.
 
 Flyway utiliza:
 
@@ -132,13 +143,13 @@ Flyway no vuelve a ejecutar las migraciones que ya fueron aplicadas. Por
 ejemplo, un cambio futuro debe añadirse como una nueva versión:
 
 ```sql
--- V53__add_status_to_patients.sql
+-- V57__add_status_to_patients.sql
 ALTER TABLE ${db_schema}.patients
 ADD COLUMN status VARCHAR(20);
 ```
 
-En el siguiente arranque, Flyway conservará `V1`–`V52` y ejecutará únicamente
-`V53`.
+En el siguiente arranque, Flyway conservará `V1`–`V56` y ejecutará únicamente
+`V57`.
 
 ## Estado de JPA e Hibernate
 
@@ -228,6 +239,10 @@ con variables de entorno:
 | `DB_SCHEMA` | `librarydb_schema` |
 | `SERVER_PORT` | `8081` |
 | `SPRING_PROFILES_ACTIVE` | `dev` |
+| `JWT_SECRET` | Secreto privado de al menos 32 bytes, obligatorio |
+| `JWT_ISSUER` | `back-intro` |
+| `JWT_ACCESS_TOKEN_EXPIRATION` | `900000` ms |
+| `JWT_REFRESH_TOKEN_EXPIRATION` | `604800000` ms |
 
 Ejemplo en PowerShell:
 
@@ -236,6 +251,7 @@ $env:DB_URL = 'jdbc:postgresql://localhost:5432/librarydb'
 $env:DB_USERNAME = 'daniel'
 $env:DB_PASSWORD = 'su-clave-local'
 $env:DB_SCHEMA = 'librarydb_schema'
+$env:JWT_SECRET = 'reemplace-por-un-secreto-aleatorio-de-al-menos-32-bytes'
 ```
 
 No almacenes contraseñas reales de otros ambientes en el repositorio.
@@ -250,9 +266,9 @@ mvn -pl infrastructure spring-boot:run
 ```
 
 Durante el arranque, Flyway valida el historial y aplica las migraciones
-pendientes. Una instalación completa debe terminar en la versión `52`. Este
-arranque también valida con Hibernate los 52 mapeos JPA. Después, los casos de
-uso quedan disponibles mediante sus endpoints REST.
+pendientes. Una instalación completa debe terminar en la versión `56`. Este
+arranque también valida con Hibernate los 56 mapeos JPA. Después, los casos de
+uso quedan disponibles mediante sus endpoints REST protegidos.
 
 La aplicación inicia de forma predeterminada en:
 
@@ -272,8 +288,8 @@ librarydb
         └── Tables
 ```
 
-Presiona `F5` para actualizar. Deben aparecer 52 tablas del modelo y la tabla
-de historial de Flyway, para un total de 53 tablas.
+Presiona `F5` para actualizar. Deben aparecer 52 tablas de negocio, 4 tablas de
+seguridad y la tabla de historial de Flyway, para un total de 57 tablas.
 
 Verifica el resultado con SQL:
 
@@ -293,9 +309,9 @@ FROM librarydb_schema.flyway_schema_history_librarydb
 WHERE NOT success;
 ```
 
-Los resultados esperados son 52 tablas, versión final `52` y cero migraciones
-fallidas. DBeaver también permite seleccionar las tablas y abrir **ER Diagram**
-para visualizar las relaciones.
+Los resultados esperados son 56 tablas administradas, versión final `56` y cero
+migraciones fallidas. DBeaver también permite seleccionar las tablas y abrir
+**ER Diagram** para visualizar las relaciones.
 
 ## Solución de problemas
 
@@ -347,3 +363,6 @@ ALTER DATABASE librarydb OWNER TO daniel;
 
 Para detalles adicionales de conexión y consultas de diagnóstico consulta
 [`infrastructure/DATABASE.md`](infrastructure/DATABASE.md).
+
+Para autenticación, roles y ejemplos de consumo consulta
+[`docs/SECURITY.md`](docs/SECURITY.md).
